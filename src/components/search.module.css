@@ -1,0 +1,16 @@
+.search {
+  transition: box-shadow 300ms ease;
+  margin: 3rem auto;
+  width: 100%;
+  padding: 10px;
+
+  border-radius: 7px;
+  outline: none;
+  border: solid 1px grey;
+  box-shadow: 1px 2px 1px #41ead4;
+  background-color: #fdfffc;
+}
+
+.search:focus {
+  box-shadow: 1px 2px 15px #41ead4;
+}
