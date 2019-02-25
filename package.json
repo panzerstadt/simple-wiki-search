@@ -3,8 +3,9 @@
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Tang Li Qun <tliqun@gmail.com>",
   "dependencies": {
+    "axios": "^0.18.0",
     "fetch-suspense": "^1.0.2",
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",

@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/simple-wiki-search",
   siteMetadata: {
     title: `Wikipedia Searchbar`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,

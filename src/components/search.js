@@ -1,5 +1,8 @@
-import React, { useState, Suspense, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import useFetch from "fetch-suspense"
+import axios from "axios"
+
+//import {Suspense} from "react"
 
 import styles from "./search.module.css"
 
@@ -7,12 +10,29 @@ const SHORT_SIZE = 16
 const LONG_SIZE = 12
 
 const FetchData = ({ search = "dinosaur", onResult }) => {
+  const [loading, setLoading] = useState(false)
+
+  const WIKI = `https://en.wikipedia.org/w/api.php?action=opensearch&origin=*&search=${search}&format=json`
+
+  useEffect(() => {
+    setLoading(true)
+    axios.get(WIKI).then(data => {
+      console.log(data)
+      if (onResult) onResult(data.data)
+    })
+  }, [search])
+
+  return <div />
+}
+
+// can't be used because Suspense is not out yet
+const SuspenseFetchData = ({ search = "dinosaur", onResult }) => {
   const [result, setResult] = useState("")
 
   const WIKI = `https://en.wikipedia.org/w/api.php?action=opensearch&origin=*&search=${search}&format=json`
   const r = useFetch(WIKI, { method: "GET" })
 
-  if (onResult) onResult(r)
+  if (onResult) onResult(r && r.length ? r : [])
 
   return <div />
 }
@@ -83,9 +103,11 @@ const SearchBar = () => {
         placeholder="wikipedia search"
       />
       <br />
+      {/* suspense is too damn new, so it's not supported officially yet
       <Suspense fallback="fetching data...">
         <FetchData search={search} onResult={setR} />
-      </Suspense>
+      </Suspense> */}
+      <FetchData search={search} onResult={setR} />
       <br />
       <h3>{header}</h3>
       <table>{dataRows}</table>
