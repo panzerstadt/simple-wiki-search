@@ -60,7 +60,7 @@ const SearchBar = () => {
   const dataRows = Object.keys(rows).map((_, l) => {
     const data = rows[l]
     return (
-      <tr key={"tr-" + l}>
+      <tr key={"tr-" + l} style={{ height: 100 }}>
         {data.map((v, i) => {
           if (!v.search("http")) {
             return (
@@ -79,7 +79,15 @@ const SearchBar = () => {
                   lineHeight: 1.2,
                 }}
               >
-                {v}
+                <p
+                  style={{
+                    minWidth: 200,
+                    maxHeight: 200,
+                    overflowY: "scroll",
+                  }}
+                >
+                  {v}
+                </p>
               </td>
             )
           }
@@ -110,7 +118,9 @@ const SearchBar = () => {
       <FetchData search={search} onResult={setR} />
       <br />
       <h3>{header}</h3>
-      <table>{dataRows}</table>
+      <div style={{ width: "100%", overflow: "scroll" }}>
+        <table>{dataRows}</table>
+      </div>
     </div>
   )
 }
